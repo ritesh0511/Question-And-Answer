@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} Answer {% endblock %}
+
+{% block form %}
+<h5><label for="textarea" class="form-label">{{ question['question_text'] }}</label></h5>
+
+<form  method="POST" action="{{ url_for('answer',question_id=question['id']) }}">
+    <h6> Ans :</h6>
+    <textarea class="form-control" rows="5" name="answer" id="textarea"></textarea>
+    <div class="col-12 my-2">
+        <button type="submit" class="btn btn-success"><a class="nav-link">Submit</a></button>
+    </div>
+</form>
+
+
+
+{% endblock %}

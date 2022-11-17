@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Ask Question {% endblock %}
+
+{% block form %}
+<form method="POST" action="/ask_question">
+    <div class="col-mb-6 my-2">
+        <label for="topic" class="form-label">Topics</label>
+        <select class="form-select" name="topic" id="topic">
+            <option value="select">select</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C">C</option>
+            <option value="Javascript">Javascript</option>
+        </select>
+        <div>
+            <label class="form-label">Expert</label>
+            <select class="form-select" name="expert">
+                {% for expert in experts %}
+                <option value="{{ expert['id'] }}">{{ expert['name'] }}</option>
+                {% endfor %}
+            </select>
+            <label class="form-label">Question</label>
+            <textarea class="form-control" rows="3" name ="question"></textarea>
+        </div>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success"><a class="nav-link">Submit</a></button>
+    </div>
+
+</form>
+{% endblock %}

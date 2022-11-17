@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Users
+
+{% endblock %}
+{% block form %}
+<h6>click to promote</h6>
+{% for user in users %}
+<div class="list-group col-lg-12 my-1">
+    <a href="{{ url_for('promote',user_id=user['id']) }}" class="list-group-item list-group-item-warning \
+      {% if user['expert'] == 1 %} bg-warning {% endif %}">{{ user['name'] }}</a> 
+</div>
+{% endfor %}
+{% endblock %}

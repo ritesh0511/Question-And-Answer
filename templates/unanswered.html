@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Unanswered Question {% endblock %}
+
+{% block form %}
+{% for question in questions %}
+<div class="list-group my-1">
+    <a href="{{ url_for('answer',question_id=question['id']) }}" class="list-group-item list-group-item-warning">
+        <h5>{{ question['question_text'] }}</h5>
+        <p>Asked By : {{ question['name']}} </p>
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}

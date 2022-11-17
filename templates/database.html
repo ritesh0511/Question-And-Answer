@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Database{% endblock %}
+{% block form %}
+    {% for user in users %}
+    User ID :- {{ user['id'] }}, Name:- {{ user['name'] }} , Admin:- {{ user['admin'] }} , Expert:- {{ user['expert'] }}, Question:- {{ user['question_text'] }}
+    {% if not loop.last %}
+    <hr>
+    {% endif %}
+    {% endfor %}
+{% endblock %}  

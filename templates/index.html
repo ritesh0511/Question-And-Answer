@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %}Examples{% endblock %}
+{% block form %}
+
+{% for q_a in question_answer %}
+<div class="container my-3">
+  <div class="alert alert-warning" role="alert">
+    <h5>{{ q_a['question_text'] }}</h5>
+    <i> <h6> Answered By : {{ q_a['name'] }} </h6></i>
+    <hr>
+    <strong> Ans : </strong>
+    {{ q_a['answer_text'] }}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
