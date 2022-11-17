@@ -77,7 +77,8 @@ def ask_question():
     if not g.user:
         return redirect('login')
     db = get_db()
-    experts = db.execute('select id , name from users where expert = 1')
+    db.execute('select id , name from users where expert = 1')
+    experts = db.fetchall()
     if request.method == 'POST':
         db.execute('insert into questions (question_text, ask_by_id, expert_id) values (%s,%s,%s)',(request.form['question'], g.user['id'], request.form['expert']))
 
