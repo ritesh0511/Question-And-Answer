@@ -117,7 +117,7 @@ def promote(user_id):
     if not g.user:
         return redirect('login')
     db =get_db()
-    db.execute('update users set admin=1 where id = %s',(user_id,))
+    db.execute('update users set expert=1 where id = %s',(user_id,))
     
     return redirect(url_for('setup'))
 
