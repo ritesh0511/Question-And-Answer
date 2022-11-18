@@ -33,18 +33,21 @@ def index():
 
 @app.route('/register/', methods = ['POST','GET'])
 def register():
+    error = None
     if request.method == 'POST':
-        error = None
+        
         alert = False
         username = request.form['username']
         password = request.form['password']
         db = get_db()
-        try:
+        db.execute('select name from users where name = %s',(username,))
+        user = db.fetchone()
+        if user is None:
             db.execute('INSERT INTO users (name,password,admin,expert) VALUES (%s,%s,%s,%s)',(username,generate_password_hash(password),0,0)) 
             
-        except db.IntegrityError :
+        else:
             error = f" User { username } already exist."
-        else :
+        if error is None:
             alert = True
             return render_template('register.html',alert=alert)
         flash(error)
@@ -52,17 +55,15 @@ def register():
 
 @app.route('/login/',methods = ["POST","GET"])
 def login():
+    error = None
     if request.method == "POST":
         db = get_db()
-        error = None
         username = request.form['username']
         password = request.form['password']
         db.execute('SELECT * FROM users WHERE name = %s',(username,))
         user = db.fetchone()
-        if user is None :
-            error = 'Incorrect Email Address.'
-        elif not check_password_hash(user['password'],password) :
-            error = 'Incorrect Password.'
+        if user is None or not check_password_hash(user['password'],password) :
+            error = 'Invalid Credentials.'
         if error is None:
             session.clear()
             session['user_id'] = user['id']
