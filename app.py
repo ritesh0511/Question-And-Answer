@@ -133,7 +133,7 @@ def database():
     if not g.user:
         return redirect('login')
     db = get_db()
-    db.execute('select * from users join questions on users.id = ask_by_id')
+    db.execute('select * from users join questions on users.id = questions.ask_by_id')
     users = db.fetchall()
     return render_template('database.html',users=users)
         
