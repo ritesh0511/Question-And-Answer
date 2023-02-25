@@ -1,8 +1,9 @@
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS questions;
 
+
 CREATE TABLE users (
-                   id serial PRIMARY KEY,
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,
                    name TEXT UNIQUE NOT NULL,
                    password TEXT NOT NULL,
                    admin INTEGER NOT NULL,
@@ -10,7 +11,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE questions (
-                        id serial PRIMARY KEY ,
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
                         question_text TEXT NOT NULL,
                         answer_text TEXT,
                         ask_by_id INTEGER NOT NULL,
